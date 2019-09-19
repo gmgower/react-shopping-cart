@@ -13,6 +13,8 @@ import {CartContext} from './contexts/CartContext';
 
 
 function App() {
+	console.log('render')
+
 	const [products] = useState(data);
     console.log("TCL: App -> data", data)
     console.log("TCL: App -> products", products)
@@ -26,11 +28,16 @@ function App() {
         console.log("TCL: App -> item", item)
 	};
 
+	const removeItem = id => {
+		setCart(cart.filter(item => {
+        console.log("TCL: App -> cart", cart)
+			return item.id !== id
+		}))
+	}
 	return (
-
 		<div className="App">
 		<ProductContext.Provider value={{products, addItem}}>
-			<CartContext.Provider value={{cart}}>
+			<CartContext.Provider value={{cart, removeItem}}>
 			<Navigation value={{cart}} />
 
 			{/* Routes */}
