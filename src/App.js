@@ -9,6 +9,8 @@ import ShoppingCart from './components/ShoppingCart';
 
 // Context
 import {ProductContext} from './contexts/ProductContext';
+import {CartContext} from './contexts/CartContext';
+
 
 function App() {
 	const [products] = useState(data);
@@ -20,6 +22,7 @@ function App() {
 
 	const addItem = item => {
 		setCart([...cart, item]);
+        console.log("TCL: App -> cart", cart)
         console.log("TCL: App -> item", item)
 	};
 
@@ -27,7 +30,8 @@ function App() {
 
 		<div className="App">
 		<ProductContext.Provider value={{products, addItem}}>
-			<Navigation cart={cart} />
+			<CartContext.Provider value={{cart}}>
+			<Navigation value={{cart}} />
 
 			{/* Routes */}
 			{/* <Route
@@ -47,6 +51,7 @@ function App() {
 				path="/cart"
 				render={() => <ShoppingCart cart={cart} />}
 			/> */}
+			</CartContext.Provider>
 			</ProductContext.Provider>
 		</div>
 	);

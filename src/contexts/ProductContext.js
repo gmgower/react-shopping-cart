@@ -1,4 +1,4 @@
 import { createContext } from 'react';
 
 export const ProductContext = createContext([])
-console.log("TCL: ProductContext", ProductContext)
+// console.log("TCL: ProductContext", ProductContext)
